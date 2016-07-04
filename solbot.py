@@ -8,11 +8,8 @@ from git import Git
 client = discord.Client()
 
 @client.event
-async def on_read():
-	print('Logged in as')
-	print(client.user.name)
-	print(client.user.id)
-	print('------')
+async def on_ready():
+	client.send_message(client.get_channel('199025108713603072'), 'SolBot online!')
 
 @client.event
 async def on_message(message):
@@ -34,7 +31,7 @@ async def on_message(message):
 		await client.edit_message(tmp, 'Code pulled. Restarting...')
 		client.logout()
 		os.execv(sys.executable, ['python3.5'] + sys.argv)
-	elif message.content == '!testingselfupdate':
+	elif message.content == '!gitstatus':
 		await client.send_message(message.channel, 'Success!')
 
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'token')) as token_file:
