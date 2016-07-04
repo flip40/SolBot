@@ -9,7 +9,7 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
-	client.send_message(client.get_channel(199025108713603072), 'SolBot online!')
+	client.send_message(client.get_channel('199025108713603072/199025108713603072'), 'SolBot online!')
 
 @client.event
 async def on_message(message):
