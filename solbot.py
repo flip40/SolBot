@@ -16,7 +16,7 @@ async def on_message(message):
 	if message.content.startswith('!test'):
 		counter = 0
 		tmp = await client.send_message(message.channel, 'Calculating messages...')
-		async for log in client.logs_from(message.channel, limit=100)
+		async for log in client.logs_from(message.channel, limit=100):
 			if log.author == message.author:
 				counter += 1
 
