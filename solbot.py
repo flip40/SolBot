@@ -34,8 +34,8 @@ async def on_message(message):
 		await client.edit_message(tmp, 'Code pulled. Restarting...')
 		client.logout()
 		os.execv(sys.executable, ['python3.5'] + sys.argv)
-	# elif message.content == '!testingselfupdate':
-	# 	await client.send_message(message.channel, 'Success!')
+	elif message.content == '!testingselfupdate':
+		await client.send_message(message.channel, 'Success!')
 
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'token')) as token_file:
 	token = json.load(token_file)['token']
