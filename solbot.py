@@ -2,6 +2,8 @@ import discord
 import asyncio
 import json
 import os
+import sys
+import git
 
 client = discord.Client()
 
@@ -25,6 +27,13 @@ async def on_message(message):
 	elif message.content.startswith('!sleep'):
 		await asyncio.sleep(5)
 		await client.send_message(message.channel, 'Done sleeping')
+	elif message.content.startswith('!update'):
+		g = Git(os.path.dirname(os.path.abspath(__file__)))
+		tmp = await client.send_message(message.channel, 'Pulling new code...')
+		g.pull()
+		await client.edit_message(tmp, 'Code pulled. Restarting...')
+		client.logout()
+		os.execv(sys.executable, ['python3.5'] + sys.argv)
 
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'token')) as token_file:
 	token = json.load(token_file)['token']
