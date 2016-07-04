@@ -25,6 +25,6 @@ async def on_message(message):
 		await asyncio.sleep(5)
 		await client.send_message(message.channel, 'Done sleeping')
 
-with open('token') as token_file:
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'token')) as token_file:
 	token = json.load(token_file)['token']
 client.run(token)
