@@ -1,6 +1,7 @@
 import discord
 import asyncio
 import json
+import os
 
 client = discord.Client()
 
