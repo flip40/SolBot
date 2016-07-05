@@ -7,7 +7,7 @@ from git import Git
 import re
 
 client = discord.Client()
-sleeping = False
+client.sleeping = False
 
 @client.event
 async def on_ready():
@@ -15,21 +15,13 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-	if sleeping:
+	if client.sleeping:
 		if message.content == '!wake':
-			sleeping = False
+			client.sleeping = False
 			await client.send_message(message.channel, 'SolBot online!')
 	else:
-		if message.content == '!test':
-			counter = 0
-			tmp = await client.send_message(message.channel, 'Calculating messages...')
-			async for log in client.logs_from(message.channel, limit=100):
-				if log.author == message.author:
-					counter += 1
-
-			await client.edit_message(tmp, 'You have {} message.'.format(counter))
-		elif message.content == '!sleep':
-			sleeping = True
+		if message.content == '!sleep':
+			client.sleeping = True
 			await client.send_message(message.channel, 'Going to sleep...')
 		elif message.content == '!update':
 			g = Git(os.path.dirname(os.path.abspath(__file__)))
