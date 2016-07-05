@@ -4,6 +4,7 @@ import json
 import os
 import sys
 from git import Git
+import re
 
 client = discord.Client()
 sleeping = False
